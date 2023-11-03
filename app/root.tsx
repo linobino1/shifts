@@ -1,4 +1,5 @@
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import { cssBundleHref } from "@remix-run/css-bundle";
 import {
   Links,
   LiveReload,
@@ -7,10 +8,14 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import classes from "./root.module.css";
 
-import styles from "./tailwind.css";
-
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
+export const links: LinksFunction = () => [
+  ...(cssBundleHref
+    ? [{ rel: "stylesheet", href: cssBundleHref }]
+    : []),
+  // ...
+];
 
 export const meta: MetaFunction = () => [
   { title: "Welcome to RePay!" },
@@ -25,7 +30,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className={classes.body}>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
