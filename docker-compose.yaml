@@ -11,7 +11,7 @@ services:
       - /app/node_modules
     environment:
       PAYLOAD_SECRET: secret123
-      MONGO_URL: mongodb://db:27017/app
+      MONGO_URL: mongodb://db:27017/shifts
       PAYLOAD_PUBLIC_SERVER_URL: http://localhost:3000
       SMTP_HOST: mail
       SMTP_PORT: 1025
