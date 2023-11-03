@@ -1,0 +1,6 @@
+.form {
+    min-width: min(90vw, 20em);
+}
+.error {
+    color: red;
+}

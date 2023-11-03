@@ -4,11 +4,12 @@ import { webpackBundler } from "@payloadcms/bundler-webpack";
 import { buildConfig } from "payload/config";
 import path from "path";
 import Users from "./cms/collections/Users";
+import Admins from "./cms/collections/Admins";
 
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || "http://localhost:3000",
   admin: {
-    user: Users.slug,
+    user: Admins.slug,
     bundler: webpackBundler(),
   },
   editor: lexicalEditor({}),
@@ -19,6 +20,7 @@ export default buildConfig({
     },
   }),
   collections: [
+    Admins,
     Users,
   ],
   typescript: {
