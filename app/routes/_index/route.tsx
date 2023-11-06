@@ -1,6 +1,5 @@
 import type { LoaderFunctionArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/server-runtime";
 
 export const loader = async ({ context: { payload, user } }: LoaderFunctionArgs) => {
@@ -8,7 +7,8 @@ export const loader = async ({ context: { payload, user } }: LoaderFunctionArgs)
     throw redirect("/auth/signin");
   }
   
-  console.log(user);
+  return redirect("/dashboard");
+
   return json({
     user,
   },
@@ -16,10 +16,9 @@ export const loader = async ({ context: { payload, user } }: LoaderFunctionArgs)
 };
 
 export default function Index() {
-  const { user } = useLoaderData<typeof loader>();
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>Welcome, { user.name }</h1>
+      <h1>Villa Shifts Planner</h1>
     </div>
   );
 }
